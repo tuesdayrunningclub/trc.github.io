@@ -4,13 +4,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 	<link href='https://fonts.googleapis.com/css?family=Maven+Pro:500' rel='stylesheet' type='text/css'>
 	<link rel='stylesheet'  href='css/style.css'>
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+	<script src ='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js'></script>
+	<script type='text/javascript' src='js/run.js'></script>
 </head>
 
-<body>
+<body onload=init()>
 
 <center><font face="verdana" color="orange" size=16>TUESDAY RUNNING CLUB
 
 <br>BIG JANUARY IS COMING!!!</font></center>
+
+<div id='graphContainer'>
+<div class="graph" id="graph1">
+		<canvas class = 'chart' id="chart1" width="400px" height="400px"></canvas></div>
+</div>
 
 
 </body>

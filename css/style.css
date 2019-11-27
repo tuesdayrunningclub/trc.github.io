@@ -1,0 +1,107 @@
+
+
+#graphContainer{
+    margin:25px;
+    text-align:center;
+}
+.chart {
+
+  height: 400px;
+  width: 400px;
+
+}
+.largechart{
+  height: 400px;
+  width: 800px;
+
+}
+#graph3, #graph4 {
+    height: 400px;
+    width: 800px;
+    margin: 10px;
+    /*
+    border-style: solid;
+    border-width: 1px;
+    */
+    background: rgba(255,255,255,0.5);
+    display: inline-block;
+    vertical-align: top;
+    text-align:center;
+}
+.graph{
+    height: 400px;
+    width: 400px;
+    margin: 10px;
+    /*
+    border-style: solid;
+    border-width: 1px;
+
+    */
+    background: rgba(255,255,255,0.5);
+    display: inline-block;
+    vertical-align: top;
+    text-align:center;
+}
+
+
+
+.table{
+
+    font-family: 'Cabin', sans-serif;
+    font-size: 12px;
+    line-height: 12px;
+    height: 400px;
+    width: 80%;
+    margin: 10px;
+    /*
+    border-style: solid;
+    border-width: 1px;
+    */
+    background: rgba(255,255,255,0.5);
+
+    vertical-align: top;
+    text-align:left;
+}
+
+
+/* If the screen size is 600px wide or less */
+@media screen and (min-width: 1000px) {
+    .largegraph{
+        height: 400px;
+        width: 400px;
+        margin: 10px;
+        /*
+        border-style: solid;
+        border-width: 1px;
+        */
+        background: rgba(255,255,255,0.5);
+        display: inline-block;
+        vertical-align: top;
+        text-align:center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+.headline {
+
+    font-size: 12px;
+    font-weight: 500;
+    height: 50px;
+    line-height: 25px;
+  }
+
+  #graphContainer{
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 10px;
+      text-align: center;
+  }
+  .graph{
+      height: 375px;
+      width: 375px;
+  }
+  .chart{
+      width: 375px;
+      height: 375px;
+  }
+}
