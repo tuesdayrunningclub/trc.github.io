@@ -5,7 +5,7 @@ function init(){
           url: "https://www.strava.com/api/v3/clubs/505946/activities?page=1&per_page=200" ,
           //url: "https://www.strava.com/api/v3/athlete/activities?after=1572644675&page=1&per_page=30"
           beforeSend: function(xhr) {
-               xhr.setRequestHeader("Authorization", "Bearer 5cede79d26005a34222d96858539b868bcdc8266")
+               xhr.setRequestHeader("Authorization", "Bearer 1fc60026f3944e660ee30541998dbbb9a53abf7e")
           }, success: function(data){
 
           var  processed_data = [];
