@@ -8,7 +8,7 @@ var secret_id = secret;
 var code = '46793ea5304cc414f9624d992d07b2f11c186029';
 
 
-var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=http://localhost/exchange_token&response_type=code&scope=read"
+var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://tuesdayrunning.club&response_type=code&scope=read"
 
 var grant_type = 'authorization_code';
 
