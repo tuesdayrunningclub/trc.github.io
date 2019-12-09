@@ -40,23 +40,14 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
   });
 
 
+    $().ready(function () {
+  var url = url_get_access
 
-
-
-  $.ajax({
-    url: url_get_access,
-    type: "GET",
-    xhrFields: {
-        withCredentials: true
-    },
-    crossDomain : true,
-    datatype: 'jsonp',
-    success: function(result){
-      console.log(result)
-    },
-    error: function (xhr, status) {
-        // handle errors
-    }});
+  $.get(url, function (data) {
+    // can use 'data' in here...
+    console.log(data);
+  });
+});
 
 /**
 
