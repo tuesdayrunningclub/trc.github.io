@@ -8,7 +8,7 @@ var secret_id = secret;
 var code = '46793ea5304cc414f9624d992d07b2f11c186029';
 
 
-var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://tuesdayrunning.club&response_type=code&scope=read"
+var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://localhost&response_type=code&scope=read"
 
 var grant_type = 'authorization_code';
 
@@ -45,7 +45,7 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
 
   $.ajax({
     url: url_get_access,
-    type: "FETCH",
+    type: "GET",
     xhrFields: {
         withCredentials: true
     },
@@ -88,7 +88,7 @@ where key is variable containing the appropriate value. But node.js has various 
 //  xhttp.send();
 
 // this is to get access code
-  "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=http://localhost&response_type=code&scope=read"
+//  "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=http://localhost&response_type=code&scope=read"
 // returns http://YOUR_CALLBACK_DOMAIN/?state=&code=AUTHORIZATION_CODE_FROM_STRAVA&scope=YOUR_SCOPE
 // this is the access code needed for the access token for the bearer
 /**
