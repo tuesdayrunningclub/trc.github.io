@@ -1,3 +1,106 @@
+var client = 40542;
+var secret = "1fc60026f3944e660ee30541998dbbb9a53abf7e";
+
+function StravaAccessToken() {
+
+var client_id = client;
+var secret_id = secret;
+var code = '46793ea5304cc414f9624d992d07b2f11c186029';
+
+
+var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=http://localhost/exchange_token&response_type=code&scope=read"
+
+var grant_type = 'authorization_code';
+
+//"https://www.strava.com/oauth/mobile/authorize?client_id=1234321&redirect_uri= YourApp%3A%2F%2Fwww.yourapp.com%2Fen-US&response_type=code&approval_prompt=auto&scope=activity%3Awrite%2Cread&state=test"
+
+url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
+  client_id +
+  "&client_secret=" +
+  secret_id +
+  "&code=" +
+  //'code' +
+  code +
+  '&grant_type=' +
+  grant_type
+
+  //console.log(url_code);
+
+
+  $.ajax({
+    url: url_code,
+    type: "POST",
+    success: function(result){
+      console.log(result.access_token);
+    },
+    error: function(error){
+    //  console.log('Error ${error}')
+    }
+
+  });
+
+
+
+
+
+  $.ajax({
+    url: url_get_access,
+    type: "FETCH",
+    xhrFields: {
+        withCredentials: true
+    },
+    crossDomain : true,
+    datatype: 'jsonp',
+    success: function(result){
+      console.log(result)
+    },
+    error: function (xhr, status) {
+        // handle errors
+    }});
+
+/**
+
+
+It worked for us in this way:
+$http.post(‘https://your.url.com 17’, {
+Post data
+json: {
+“prop1”: “val1”,
+“prop2”: “val2”
+},
+headers: {
+‘Content-Type’: ‘application/json’,
+‘X-Api-Key’: key
+}
+},
+// Callback
+function (err, response, body) {
+…
+
+where key is variable containing the appropriate value. But node.js has various other methods to do an http-request.
+
+
+
+**/
+
+
+//  xhttp.open("POST", "demo_get2.asp?fname=Henry&lname=Ford", true);
+//  xhttp.send();
+
+// this is to get access code
+  "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=http://localhost&response_type=code&scope=read"
+// returns http://YOUR_CALLBACK_DOMAIN/?state=&code=AUTHORIZATION_CODE_FROM_STRAVA&scope=YOUR_SCOPE
+// this is the access code needed for the access token for the bearer
+/**
+https://www.strava.com/oauth/token?client_id=YOUR_CLIENT_ID&
+    client_secret=YOUR_CLIENT_SECRET&
+    code=AUTHORIZATION_CODE_FROM_STRAVA&
+    grant_type=authorization_code
+**/
+init();
+
+}
+
 function init(){
 
 
@@ -5,7 +108,7 @@ function init(){
           url: "https://www.strava.com/api/v3/clubs/505946/activities?page=1&per_page=200" ,
           //url: "https://www.strava.com/api/v3/athlete/activities?after=1572644675&page=1&per_page=30"
           beforeSend: function(xhr) {
-               xhr.setRequestHeader("Authorization", "Bearer 1fc60026f3944e660ee30541998dbbb9a53abf7e")
+               xhr.setRequestHeader("Authorization", "Bearer 155d638d55b4cff66dc82fbbc85b48b945e1253f")
           }, success: function(data){
 
           var  processed_data = [];
