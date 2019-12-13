@@ -36,14 +36,7 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
     url: url_code,
     type: "POST",
     success: function(result){
-<<<<<<< HEAD
-
-      token = result.access_token;
-      init(token);
-=======
-      console.log(result.access_token);
       init(result.access_token);
->>>>>>> origin/master
     },
     error: function(error){
     //  console.log('Error ${error}')
@@ -66,10 +59,7 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
           });
 }
 **/
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 
 }
 
@@ -80,11 +70,9 @@ function init(token){
           url: "https://www.strava.com/api/v3/clubs/505946/activities?page=1&per_page=200" ,
           //url: "https://www.strava.com/api/v3/athlete/activities?after=1572644675&page=1&per_page=30"
           beforeSend: function(xhr) {
-<<<<<<< HEAD
+
                xhr.setRequestHeader("Authorization", "Bearer " + token)
-=======
-               xhr.setRequestHeader("Authorization", "Bearer " + token)// 155d638d55b4cff66dc82fbbc85b48b945e1253f")
->>>>>>> origin/master
+
           }, success: function(data){
             console.log(data);
 
