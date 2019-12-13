@@ -1,7 +1,8 @@
 var client = 40542;
 var secret = "1fc60026f3944e660ee30541998dbbb9a53abf7e";
 
-
+// Average distance per runner
+// Average time per runner
 
 function StravaAccessToken() {
 
@@ -35,7 +36,7 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
     url: url_code,
     type: "POST",
     success: function(result){
-    //  console.log(result, result.access_token);
+
       token = result.access_token;
       init(token);
     },
@@ -45,61 +46,26 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
 
   });
 
-
-    $().ready(function () {
-  var url = url_get_access
-
-  $.get(url, function (data) {
-    // can use 'data' in here...
-    console.log(data);
-  });
-});
-
-/**
-
-
-It worked for us in this way:
-$http.post(‘https://your.url.com 17’, {
-Post data
-json: {
-“prop1”: “val1”,
-“prop2”: “val2”
-},
-headers: {
-‘Content-Type’: ‘application/json’,
-‘X-Api-Key’: key
+  /**
+    $.ajax({
+            url: url_get_access,
+            type: "GET",
+            beforeSend: function(xhr) {
+            //   xhr.setRequestHeader("Access-Control-Allow-Origin: *");
+                 console.log("hello1");
+            }, success: function(data){
+              console.log("hello2");
+            },error: function(error){
+              console.log(error);
+            }
+          });
 }
-},
-// Callback
-function (err, response, body) {
-…
-
-where key is variable containing the appropriate value. But node.js has various other methods to do an http-request.
-
-
-
 **/
-
-
-//  xhttp.open("POST", "demo_get2.asp?fname=Henry&lname=Ford", true);
-//  xhttp.send();
-
-// this is to get access code
-//  "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=http://localhost&response_type=code&scope=read"
-// returns http://YOUR_CALLBACK_DOMAIN/?state=&code=AUTHORIZATION_CODE_FROM_STRAVA&scope=YOUR_SCOPE
-// this is the access code needed for the access token for the bearer
-/**
-https://www.strava.com/oauth/token?client_id=YOUR_CLIENT_ID&
-    client_secret=YOUR_CLIENT_SECRET&
-    code=AUTHORIZATION_CODE_FROM_STRAVA&
-    grant_type=authorization_code
-**/
-
 
 }
 
 function init(token){
-console.log(token);
+
 
   $.ajax({
           url: "https://www.strava.com/api/v3/clubs/505946/activities?page=1&per_page=200" ,
@@ -107,10 +73,14 @@ console.log(token);
           beforeSend: function(xhr) {
                xhr.setRequestHeader("Authorization", "Bearer " + token)
           }, success: function(data){
+            console.log(data);
 
           var  processed_data = [];
 
-          var runners = [{name: "JonnyB.", distance : 0},{name: "JonathonD.", distance : 0},{name: "ChristopherG.", distance : 0},{name: "MarcusP.", distance : 0}, ];
+          var runners = [{name: "JonnyB.", distance : 0, cnt: 0, elevation: 0,timetaken: 0 },
+                         {name: "JonathonD.", distance : 0, cnt: 0, elevation: 0,timetaken: 0},
+                         {name: "ChristopherG.", distance : 0, cnt: 0, elevation: 0,timetaken: 0},
+                         {name: "MarcusP.", distance : 0, cnt: 0, elevation: 0,timetaken: 0}, ];
               //alert(data);
               //process the JSON data etc
 
@@ -119,16 +89,44 @@ console.log(token);
               var d2 = 0;
               var d3 = 0;
 
+              var c0 = 0;
+              var c1 = 0;
+              var c2 = 0;
+              var c3 = 0;
+
+              var e0 = 0;
+              var e1 = 0;
+              var e2 = 0;
+              var e3 = 0;
+
+              var s0 = 0;
+              var s1 = 0;
+              var s2 = 0;
+              var s3 = 0;
+
+
 for (i in data){
   var n = data[i].athlete.firstname + data[i].athlete.lastname
   if (n === runners[0].name){
    d0 += data[i].distance
+   c0+=1
+   e0 += data[i].total_elevation_gain
+   s0 += data[i].moving_time
   } else if (n === runners[1].name){
     d1 += data[i].distance
+    c1+=1
+    e1 += data[i].total_elevation_gain
+    s1 += data[i].moving_time
   } else if (n === runners[2].name){
     d2 += data[i].distance
+    c2+=1
+    e2 += data[i].total_elevation_gain
+    s2 += data[i].moving_time
   } else if (n === runners[3].name){
     d3 += data[i].distance
+    c3+=1
+    e3 += data[i].total_elevation_gain
+    s3 += data[i].moving_time
   }
 }
 runners[0].distance = d0/1000;
@@ -136,12 +134,26 @@ runners[1].distance = d1/1000;
 runners[2].distance = d2/1000;
 runners[3].distance = d3/1000;
 
-console.log(runners[0].name, runners[0].distance);
-console.log(runners[1].name, runners[1].distance);
-console.log(runners[2].name, runners[2].distance);
-console.log(runners[3].name, runners[3].distance);
+runners[0].cnt = c0;
+runners[1].cnt = c1;
+runners[2].cnt = c2;
+runners[3].cnt = c3;
+
+runners[0].elevation = e0;
+runners[1].elevation = e1;
+runners[2].elevation = e2;
+runners[3].elevation = e3;
+
+runners[0].timetaken = s0/3600;
+runners[1].timetaken = s1/3600;
+runners[2].timetaken = s2/3600;
+runners[3].timetaken = s3/3600;
+
 
 makeMonthGraph(runners);
+makeCountGraph(runners);
+makeElevationGraph(runners);
+makeSecondsGraph(runners);
 
       }
 
@@ -198,3 +210,148 @@ function makeMonthGraph(obj){
 
 
     }
+
+
+    function makeCountGraph(obj){
+
+      names = [];
+      cnt = [];
+
+      for (i in obj){
+        names.push(obj[i].name);
+        cnt.push(obj[i].cnt);
+
+      }
+
+
+      var ctx = document.getElementById("chart2").getContext('2d');
+       var myChart = new Chart(ctx, {
+       type: 'bar',
+       data: {
+       labels: names,
+       datasets: [{
+           label: 'Run count',
+           data: cnt,
+           backgroundColor: 'orange',
+           borderColor: 'black',
+           borderWidth: 1
+       }]
+       },
+       options: {
+       legend: {
+           display: false
+       },
+       title: {
+          display: true,
+          text: 'No. of Runs'
+       },
+       scales: {
+           yAxes: [{
+               gridLines:{ display: false},
+               ticks: {
+                   beginAtZero:true
+               }
+           }],
+           xAxes: [{gridLines: {display: false}}]
+       }
+       }
+       });
+
+
+        }
+
+function makeElevationGraph(obj){
+
+          names = [];
+          elev = [];
+
+          for (i in obj){
+            names.push(obj[i].name);
+            elev.push(obj[i].elevation);
+
+          }
+
+
+          var ctx = document.getElementById("chart3").getContext('2d');
+           var myChart = new Chart(ctx, {
+           type: 'bar',
+           data: {
+           labels: names,
+           datasets: [{
+               label: 'Elevation',
+               data: elev,
+               backgroundColor: 'orange',
+               borderColor: 'black',
+               borderWidth: 1
+           }]
+           },
+           options: {
+           legend: {
+               display: false
+           },
+           title: {
+              display: true,
+              text: 'Elevation gain'
+           },
+           scales: {
+               yAxes: [{
+                   gridLines:{ display: false},
+                   ticks: {
+                       beginAtZero:true
+                   }
+               }],
+               xAxes: [{gridLines: {display: false}}]
+           }
+           }
+           });
+
+
+            }
+
+            function makeSecondsGraph(obj){
+
+                      names = [];
+                      secs = [];
+
+                      for (i in obj){
+                        names.push(obj[i].name);
+                        secs.push(obj[i].timetaken);
+
+                      }
+
+
+                      var ctx = document.getElementById("chart4").getContext('2d');
+                       var myChart = new Chart(ctx, {
+                       type: 'bar',
+                       data: {
+                       labels: names,
+                       datasets: [{
+                           label: 'Hours',
+                           data: secs,
+                           backgroundColor: 'orange',
+                           borderColor: 'black',
+                           borderWidth: 1
+                       }]
+                       },
+                       options: {
+                       legend: {
+                           display: false
+                       },
+                       title: {
+                          display: true,
+                          text: 'Total Moving Time (hours)'
+                       },
+                       scales: {
+                           yAxes: [{
+                               gridLines:{ display: false},
+                               ticks: {
+                                   beginAtZero:true
+                               }
+                           }],
+                           xAxes: [{gridLines: {display: false}}]
+                       }
+                       }
+                       });
+
+
+                        }
