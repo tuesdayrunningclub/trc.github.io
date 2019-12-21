@@ -150,6 +150,11 @@ runners[1].timetaken = s1/3600;
 runners[2].timetaken = s2/3600;
 runners[3].timetaken = s3/3600;
 
+console.log("avg distance - " + (d0/1000)/c0);
+console.log("avg distance - " + (d1/1000)/c1);
+console.log("avg distance - " + (d2/1000)/c2);
+console.log("avg distance - " + (d3/1000)/c3);
+
 
 makeMonthGraph(runners);
 makeCountGraph(runners);
