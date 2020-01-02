@@ -143,10 +143,10 @@ runners[1].cnt = c1;
 runners[2].cnt = c2;
 runners[3].cnt = c3;
 
-runners[0].elevation = e0;
-runners[1].elevation = e1;
-runners[2].elevation = e2;
-runners[3].elevation = e3;
+runners[0].elevation = e0.toFixed(2);
+runners[1].elevation = e1.toFixed(2);
+runners[2].elevation = e2.toFixed(2);
+runners[3].elevation = e3.toFixed(2);
 
 runners[0].timetaken = (s0/3600).toFixed(2);
 runners[1].timetaken = (s1/3600).toFixed(2);
@@ -163,7 +163,7 @@ makeMonthGraph(runners);
 makeCountGraph(runners);
 makeElevationGraph(runners);
 makeSecondsGraph(runners);
-makeDailyGraph(processed_data);
+//makeDailyGraph(processed_data);
 
       }
 
@@ -187,7 +187,7 @@ function makeMonthGraph(obj){
 
   var ctx = document.getElementById("chart1").getContext('2d');
    var myChart = new Chart(ctx, {
-   type: 'bar',
+   type: 'horizontalBar',
    data: {
    labels: names,
    datasets: [{
