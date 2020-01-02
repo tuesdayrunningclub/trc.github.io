@@ -1,25 +1,29 @@
 
 
-#graphContainer{
+#graphContainer1, #graphContainer2{
     margin:25px;
     text-align:center;
 }
 .chart {
-
   height: 300px;
   width: 300px;
 
 }
-.largechart{
-  height: 300px;
-  width: 600px;
+.largegraph, .largechart{
+  height: 400px;
+  width: 800px;
+
+}
+
+.largegraph{
+  margin: 10px;
 
 }
 
 .graph{
     height: 300px;
     width: 300px;
-    margin: 10px;
+  margin: 10px;
     /*
     border-style: solid;
     border-width: 1px;
@@ -54,9 +58,9 @@
 
 /* If the screen size is 600px wide or less */
 @media screen and (min-width: 1000px) {
-    .largegraph{
+    .largegraph, .largechart{
         height: 400px;
-        width: 400px;
+        width: 800px;
         margin: 10px;
         /*
         border-style: solid;

@@ -78,7 +78,8 @@ function init(token){
 
           var  processed_data = [];
 
-          var runners = [{name: "JonnyB.", distance : 0, cnt: 0, elevation: 0,timetaken: 0 },
+
+          var runners = [{name: "JonnyB.", distance : 0, cnt: 0, elevation: 0,timetaken: 0},
                          {name: "JonathonD.", distance : 0, cnt: 0, elevation: 0,timetaken: 0},
                          {name: "ChristopherG.", distance : 0, cnt: 0, elevation: 0,timetaken: 0},
                          {name: "MarcusP.", distance : 0, cnt: 0, elevation: 0,timetaken: 0}, ];
@@ -107,6 +108,8 @@ function init(token){
 
 
 for (i in data){
+  if (data[i].name.substring(0,7) == "2020-01"){
+    processed_data.push(data[i]);
   var n = data[i].athlete.firstname + data[i].athlete.lastname
   if (n === runners[0].name){
    d0 += data[i].distance
@@ -129,11 +132,11 @@ for (i in data){
     e3 += data[i].total_elevation_gain
     s3 += data[i].moving_time
   }
-}
-runners[0].distance = d0/1000;
-runners[1].distance = d1/1000;
-runners[2].distance = d2/1000;
-runners[3].distance = d3/1000;
+}}
+runners[0].distance = (d0/1000).toFixed(2);
+runners[1].distance = (d1/1000).toFixed(2);
+runners[2].distance = (d2/1000).toFixed(2);
+runners[3].distance = (d3/1000).toFixed(2);
 
 runners[0].cnt = c0;
 runners[1].cnt = c1;
@@ -145,10 +148,10 @@ runners[1].elevation = e1;
 runners[2].elevation = e2;
 runners[3].elevation = e3;
 
-runners[0].timetaken = s0/3600;
-runners[1].timetaken = s1/3600;
-runners[2].timetaken = s2/3600;
-runners[3].timetaken = s3/3600;
+runners[0].timetaken = (s0/3600).toFixed(2);
+runners[1].timetaken = (s1/3600).toFixed(2);
+runners[2].timetaken = (s2/3600).toFixed(2);
+runners[3].timetaken = (s3/3600).toFixed(2);
 
 console.log("avg distance - " + (d0/1000)/c0);
 console.log("avg distance - " + (d1/1000)/c1);
@@ -160,6 +163,7 @@ makeMonthGraph(runners);
 makeCountGraph(runners);
 makeElevationGraph(runners);
 makeSecondsGraph(runners);
+makeDailyGraph(processed_data);
 
       }
 
@@ -361,3 +365,78 @@ function makeElevationGraph(obj){
 
 
                         }
+
+    function makeDailyGraph(data){
+      console.log(data);
+
+      var xAx = Array.from(new Array(31), (x,i) => i + 1);
+
+      var rnnrs = ["JonnyB.","JonathonD.","ChristopherG.","MarcusP."];
+
+      var jb = [];
+
+// need to loop through the data, names and days to find the matches
+
+
+
+
+      var run_daily = [1,2,3,10];
+
+    console.log(xAx);
+
+    var ctx = document.getElementById("chartDaily").getContext('2d');
+  var myChart = new Chart(ctx, {
+  type: 'line',
+  data: {
+  labels: xAx,
+  datasets: [{
+      label: rnnrs[0],
+      data: jb,
+      pointBackgroundColor: 'red',
+      pointBorderColor: 'red',
+      borderColor: 'pink',
+      pointBorderWidth: 1,
+      pointRadius: 5,
+      fill: false
+  },{
+    label: rnnrs[1],
+    data: [1,2,3,4],
+    pointBackgroundColor: 'blue',
+    pointBorderColor: 'blue',
+    borderColor: 'lightblue',
+    pointBorderWidth: 1,
+    pointRadius: 5,
+    fill: false
+  },{
+    label: rnnrs[2],
+    data: run_daily,
+    pointBackgroundColor: 'green',
+    pointBorderColor: 'green',
+    borderColor: 'lightgreen',
+    pointBorderWidth: 1,
+    pointRadius: 5,
+    fill: false
+  }]
+  },
+  options: {
+  legend: {
+      display: true
+  },
+  title: {
+     display: true,
+     text: 'Distance per Day'
+  },
+  scales: {
+      yAxes: [{
+          gridLines:{ display: false},
+          ticks: {
+              beginAtZero:true
+          }
+      }],
+      xAxes: [{
+        gridLines: {display: false}}]
+  }
+  }
+  });
+
+}
