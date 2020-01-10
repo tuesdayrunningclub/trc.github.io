@@ -10,7 +10,7 @@ function StravaAccessToken() {
 
 var client_id = client;
 var secret_id = secret;
-var code = 'ae96a5cd1986be30e44d10fa07866f8c2acd3b9c';
+var code = 'b9762252bb2e8802b76e76bc3048737d4d40829c';
 
 
 var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://localhost&response_type=code&scope=read"
