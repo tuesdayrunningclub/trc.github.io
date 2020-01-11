@@ -10,7 +10,7 @@ function StravaAccessToken() {
 
 var client_id = client;
 var secret_id = secret;
-var code = 'b9762252bb2e8802b76e76bc3048737d4d40829c';
+var code = '6c035b0745e47120067519bef8a38b2b2fe907b2';
 
 
 var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://localhost&response_type=code&scope=read"
@@ -29,7 +29,7 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
   '&grant_type=' +
   grant_type
 
-  //console.log(url_code);
+  console.log(url_code);
 
 
   $.ajax({
