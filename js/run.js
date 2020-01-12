@@ -1,5 +1,6 @@
 var client = 40542;
 var secret = "1fc60026f3944e660ee30541998dbbb9a53abf7e";
+var tk = "e7fcf6537675addc4fca4d4617ee0bba266a6aac"
 
 // Average distance per runner
 // Average time per runner
@@ -12,50 +13,56 @@ var auth_code = 'c1a8f4594d4aae0cad45bb312b31636fb12efe9d';
 
 
 var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://localhost&response_type=code&scope=read"
-// need to go to this site and get the code each time
+// need to go to this site and get the access code each time
 
-var settings = {
-  "url": "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://localhost&response_type=code&scope=read",
-  "method": "GET",
-  "timeout": 0,
-};
+// var settings = {
+//   "url": "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://localhost&response_type=code&scope=read",
+//   "method": "GET",
+//   "timeout": 0,
+// };
+//
+// $.ajax(settings).done(function (response) {
+//   console.log(response);
+// });
 
-$.ajax(settings).done(function (response) {
-  console.log(response);
-});
 
 
+// var grant_type = 'authorization_code';
+//
+// url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
+//   client_id +
+//   "&client_secret=" +
+//   secret_id +
+//   "&code=" +
+//   //'code' +
+//   auth_code +
+//   '&grant_type=' +
+//   grant_type
+//
+//   console.log("" + url_code);
+//
+//   $.ajax({
+//     url: url_code,
+//     type: "POST",
+//     success: function(result){
+//       init(result.access_token);
+//     },
+//     error: function(error){
+//     //  console.log('Error ${error}')
+//     }
+//
+//   });
 
-var grant_type = 'authorization_code';
-
-url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
-  client_id +
-  "&client_secret=" +
-  secret_id +
-  "&code=" +
-  //'code' +
-  auth_code +
-  '&grant_type=' +
-  grant_type
-
-  console.log("" + url_code);
-
-  $.ajax({
-    url: url_code,
-    type: "POST",
-    success: function(result){
-      init(result.access_token);
-    },
-    error: function(error){
-    //  console.log('Error ${error}')
-    }
-
-  });
+init(tk);
 
 }
 
 function init(token){
 
+
+
+
+// FOR THIS I JUST NEED MY ACCESS TOKEN WHICH CHANGES EVERY 6 HOURS
 
   $.ajax({
           url: "https://www.strava.com/api/v3/clubs/505946/activities?page=1&per_page=200" ,
