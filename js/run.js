@@ -6,18 +6,27 @@ var secret = "1fc60026f3944e660ee30541998dbbb9a53abf7e";
 
 function StravaAccessToken() {
 
-  var token = "";
-
 var client_id = client;
 var secret_id = secret;
-var code = '6c035b0745e47120067519bef8a38b2b2fe907b2';
+var auth_code = 'c1a8f4594d4aae0cad45bb312b31636fb12efe9d';
 
 
 var url_get_access = "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://localhost&response_type=code&scope=read"
+// need to go to this site and get the code each time
+
+var settings = {
+  "url": "https://www.strava.com/oauth/authorize?client_id=40542&redirect_uri=https://localhost&response_type=code&scope=read",
+  "method": "GET",
+  "timeout": 0,
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+
+
 
 var grant_type = 'authorization_code';
-
-//"https://www.strava.com/oauth/mobile/authorize?client_id=1234321&redirect_uri= YourApp%3A%2F%2Fwww.yourapp.com%2Fen-US&response_type=code&approval_prompt=auto&scope=activity%3Awrite%2Cread&state=test"
 
 url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
   client_id +
@@ -25,12 +34,11 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
   secret_id +
   "&code=" +
   //'code' +
-  code +
+  auth_code +
   '&grant_type=' +
   grant_type
 
-  console.log(url_code);
-
+  console.log("" + url_code);
 
   $.ajax({
     url: url_code,
@@ -43,23 +51,6 @@ url_code = "https://www.strava.com/api/v3/oauth/token?client_id=" +
     }
 
   });
-
-  /**
-    $.ajax({
-            url: url_get_access,
-            type: "GET",
-            beforeSend: function(xhr) {
-            //   xhr.setRequestHeader("Access-Control-Allow-Origin: *");
-                 console.log("hello1");
-            }, success: function(data){
-              console.log("hello2");
-            },error: function(error){
-              console.log(error);
-            }
-          });
-}
-**/
-
 
 }
 
