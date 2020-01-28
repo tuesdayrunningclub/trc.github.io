@@ -1,6 +1,6 @@
 var client = 40542;
 var secret = "1fc60026f3944e660ee30541998dbbb9a53abf7e";
-var tk = "025321ba8c3056b0e8f5556af58f102aeab71294"
+var tk = "b1df350000a208ce6b12694b253743a5759469b9"
 
 // Average distance per runner
 // Average time per runner
