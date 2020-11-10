@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 function init(){
+=======
+var client = 40542;
+var secret = "1fc60026f3944e660ee30541998dbbb9a53abf7e";
+var tk = "33c4ddfbdf2d5dffbe7d57aad19398bdd0418c7a"
+>>>>>>> origin/master
 
 
   $.ajax({
