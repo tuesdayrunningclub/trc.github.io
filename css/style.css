@@ -1,29 +1,68 @@
 
 
-#graphContainer1, #graphContainer2{
-    margin:5px;
+#graphContainer{
+    margin:25px;
     text-align:center;
 }
 .chart {
-  height: 300px;
-  width: 300px;
+
+  height: 400px;
+  width: 400px;
 
 }
-.largegraph, .largechart{
+.largechart{
   height: 400px;
   width: 800px;
 
 }
 
-.largegraph{
-  margin: 10px;
-
+#widget{
+    text-align:center;
+    margin: auto;
 }
 
+#headerpiece{
+    height: 40px;
+    text-align:center;
+    margin: 0;
+}
+
+#logo{
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+    display:inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#title{
+    height: 40px;
+    line-height: 40px;
+    font-size: 40px;
+    text-align:center;
+    font-family: 'Oswald';
+    /**background-color: '#FFD662';**/
+    margin: auto;
+    display:inline-block;
+}
+#graph3, #graph4 {
+    height: 400px;
+    width: 800px;
+    margin: 10px;
+    /*
+    border-style: solid;
+    border-width: 1px;
+    */
+    background: rgba(255,255,255,0.5);
+    display: inline-block;
+    vertical-align: top;
+    text-align:center;
+}
 .graph{
-    height: 300px;
-    width: 300px;
-  margin: 10px;
+    height: 400px;
+    width: 400px;
+    margin: 10px;
     /*
     border-style: solid;
     border-width: 1px;
@@ -58,9 +97,9 @@
 
 /* If the screen size is 600px wide or less */
 @media screen and (min-width: 1000px) {
-    .largegraph, .largechart{
+    .largegraph{
         height: 400px;
-        width: 800px;
+        width: 400px;
         margin: 10px;
         /*
         border-style: solid;
