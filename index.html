@@ -10,28 +10,32 @@
   crossorigin="anonymous"></script>
 	<script src ='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.js'></script>
 	<script type='text/javascript' src='js/run.js'></script>
+	<script type='text/javascript' src='js/bigjan.js'></script>
 
 </head>
 
 <body onload=init()>
 
 
-
+<div id = 'container'>
 <div id = 'headerpiece'>
 	<!--<div id='title'>TUESDAY <span style="color:#fbf35b">RUNNING</span> CLUB</div>-->
-	<div id='title'>TUESDAY RUNNING CLUB</div>
+	<div id='t' class = 'title'>TUESDAY </div>
+  <div id='r' class = 'title'>RUNNING </div>
+	<div id='c' class = 'title'>CLUB </div>
 	<img id = 'logo' src="images/trc.jpg" alt="TRC">
 </div>
+<br>
 <p>
 
 <div id ='widget'>
 	<iframe allowtransparency frameborder='0' height='160' scrolling='no' src='https://www.strava.com/clubs/505946/latest-rides/f1af795a04b32256d7538f63756fd98b32cb3d2f?show_rides=false' width='300'></iframe>
 </div>
-<!--
+</div>
+
 <div id='graphContainer'>
 <div class="graph" id="graph1">
 		<canvas class = 'chart' id="chart1" width="400px" height="400px"></canvas></div>
 </div>
--->
 
 </body>
