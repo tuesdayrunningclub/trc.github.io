@@ -1,8 +1,31 @@
+var code = '1qRppMgFSjIneLiGnORtpmpaPZ7HHVW5eTbHJ62CebrY'
+
 function init(){
+
+  Tabletop.init({
+         key: code,
+         callback: function(bigjan2, tabletop){
+           var distance = [];
+           var runners = [];
+
+           for (var r in bigjan2){
+             distance.push(bigjan2[r].Distance);
+             runners.push(bigjan2[r].Athlete);
+           }
+
+           makeBigJanTwo(runners, distance);
+
+         },
+
+    simpleSheet: true
+  });
+
 
 getData();
 
 function getData(){
+
+
 //  $.ajax({
 var data = bigjan;
           //url: "https://www.strava.com/api/v3/clubs/505946/activities?page=1&per_page=200" ,
@@ -46,7 +69,7 @@ console.log(runners[2].name, runners[2].distance);
 console.log(runners[3].name, runners[3].distance);
 
 makeMonthGraph(runners);
-getWinner(runners);
+makeBigJanTwo(runners);
 
       }
 
@@ -69,6 +92,44 @@ console.log(winner);
  return winner;
 
 }
+
+function makeBigJanTwo(a,d){
+
+  var ctx = document.getElementById("chart2").getContext('2d');
+   var myChart = new Chart(ctx, {
+   type: 'bar',
+   data: {
+   labels: a,
+   datasets: [{
+       label: 'distance',
+       data: d,
+       backgroundColor: '#FFF258',
+       borderColor: 'black',
+       borderWidth: 1
+   }]
+   },
+   options: {
+   legend: {
+       display: false
+   },
+   title: {
+      display: true,
+      text: 'Big January 2: Big and Biggerer'
+   },
+   scales: {
+       yAxes: [{
+           gridLines:{ display: false},
+           ticks: {
+               beginAtZero:true
+           }
+       }],
+       xAxes: [{gridLines: {display: false}}]
+   }
+   }
+   });
+
+
+    }
 
 function makeMonthGraph(obj){
 
@@ -101,7 +162,7 @@ function makeMonthGraph(obj){
    },
    title: {
       display: true,
-      text: 'Big January 2020 - Distance'
+      text: 'Big January 1: The Biggening'
    },
    scales: {
        yAxes: [{
